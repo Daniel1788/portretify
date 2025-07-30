@@ -67,7 +67,7 @@ export default function HomePage() {
       {/* Features */}
       <section className="py-16 px-4 bg-muted">
         <div className="bauhaus-container mx-auto content-layer">
-          <h3 className="text-3xl font-bold text-center bauhaus-heading mb-12">De ce să alegi PortraitMaster?</h3>
+          <h3 className="text-3xl font-bold text-center bauhaus-heading mb-12">De ce să alegi Portretify?</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <FeatureCard
               title="Lecții structurate"
@@ -101,7 +101,7 @@ export default function HomePage() {
         <div className="bauhaus-container mx-auto text-center content-layer">
           <h3 className="text-3xl font-bold bauhaus-heading mb-6">Gata să începi călătoria ta artistică?</h3>
           <p className="mb-8 max-w-2xl mx-auto">
-            Alătură-te miilor de artiști care și-au dezvoltat abilitățile de desen cu PortraitMaster.
+            Alătură-te artiștilor care și-au dezvoltat abilitățile de desen cu Portretify.
           </p>
           <Button
             asChild={user ? true : false}
