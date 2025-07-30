@@ -87,18 +87,7 @@ export function Navigation() {
                           </div>
                         </div>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem asChild>
-                          <Link href="/profile" className="cursor-pointer">
-                            <User className="mr-2 h-4 w-4" />
-                            Profil
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link href="/settings" className="cursor-pointer">
-                            <Settings className="mr-2 h-4 w-4" />
-                            Setări
-                          </Link>
-                        </DropdownMenuItem>
+                        
                         {isAdmin && (
                           <>
                             <DropdownMenuSeparator />
