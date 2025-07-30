@@ -200,7 +200,7 @@ export default function LessonDetailPage({ params }: { params: { id: string } })
                 <CardContent>
                   <div className="mb-6">
                     <Image
-                      src={currentStepData.image || "/placeholder.svg"}
+                      src={currentStepData.image_url || "/placeholder.svg"}
                       alt={currentStepData.title}
                       width={600}
                       height={400}
