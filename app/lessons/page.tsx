@@ -95,7 +95,7 @@ export default function LessonsPage() {
                 value={(getCompletedLessons() / Math.max(lessons.length, 1)) * 100}
                 className="mb-8 h-2 rounded-lg"
               />
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-2 gap-8 text-center">
                 <div>
                   <div className="text-3xl font-bold text-accent bauhaus-heading">{getCompletedLessons()}</div>
                   <div className="text-sm text-muted-foreground">Lecții completate</div>
@@ -111,14 +111,6 @@ export default function LessonsPage() {
                     %
                   </div>
                   <div className="text-sm text-muted-foreground">Progres general</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold bauhaus-heading">0</div>
-                  <div className="text-sm text-muted-foreground">Desene create</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold bauhaus-heading">0</div>
-                  <div className="text-sm text-muted-foreground">Insigne câștigate</div>
                 </div>
               </div>
             </CardContent>
