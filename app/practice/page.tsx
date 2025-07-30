@@ -72,15 +72,15 @@ export default function PracticePage() {
     {
       id: "face-proportions",
       name: "Proporții faciale",
-      url: "/placeholder.svg?height=400&width=300&text=Proportii+Faciale",
+      url: "https://d2culxnxbccemt.cloudfront.net/craft/content/uploads/2013/06/11170631/drawing-faces-diagram.png",
     },
     {
       id: "eye-structure",
       name: "Structura ochilor",
-      url: "/placeholder.svg?height=400&width=300&text=Structura+Ochilor",
+      url: "https://artfulhaven.com/wp-content/uploads/2020/04/FACE-PROPORTIONS7.jpg",
     },
-    { id: "nose-angles", name: "Unghiuri nas", url: "/placeholder.svg?height=400&width=300&text=Unghiuri+Nas" },
-    { id: "mouth-expressions", name: "Expresii gură", url: "/placeholder.svg?height=400&width=300&text=Expresii+Gura" },
+    { id: "nose-angles", name: "Unghiuri nas", url: "https://artlot.weebly.com/uploads/5/3/3/6/53368813/4387590_orig.gif" },
+    { id: "mouth-expressions", name: "Expresii gură", url: "https://www.clipstudio.net/wp-content/uploads/2019/12/0050_007.jpg" },
     // Add lesson steps as reference images
     ...lessonSteps.map((step, index) => ({
       id: `lesson-${selectedLesson?.id}-step-${index}`,
