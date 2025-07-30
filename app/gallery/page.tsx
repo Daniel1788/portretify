@@ -5,7 +5,6 @@ import { Download, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-// Remove the Tabs import
 import Image from "next/image"
 import { AuthGuard } from "@/components/auth-guard"
 import { Navigation } from "@/components/navigation"

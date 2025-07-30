@@ -44,7 +44,7 @@ export default function PracticePage() {
   const [isDrawing, setIsDrawing] = useState(false)
   const [canvasReady, setCanvasReady] = useState(false)
   const [tool, setTool] = useState<"pencil" | "eraser">("pencil")
-  const [brushSize, setBrushSize] = useState([5])
+  const [brushSize, setBrushSize] = useState([1])
   const [brushColor, setBrushColor] = useState("#000000")
   const [showReference, setShowReference] = useState(true)
   const [referenceImage, setReferenceImage] = useState("face-proportions")
@@ -107,7 +107,9 @@ export default function PracticePage() {
 
     if (lessonId) {
       loadLessonSteps(Number.parseInt(lessonId))
-      if (stepIndex) {/* Will be set after steps are loaded*/}
+      if (stepIndex) {
+        // Will be set after steps are loaded
+      }
     }
   }, [])
 
@@ -212,9 +214,10 @@ export default function PracticePage() {
     // Calculează dimensiunile
     const container = canvas.parentElement
     const containerWidth = container?.clientWidth || 800
-    const maxWidth = Math.min(containerWidth - 32, 800)
+    // Mărește dimensiunile canvas-ului
+    const maxWidth = Math.min(containerWidth - 32, 1000) // Crescut de la 800 la 1000
     const canvasWidth = maxWidth
-    const canvasHeight = (canvasWidth * 600) / 800
+    const canvasHeight = (canvasWidth * 700) / 800 // Crescut înălțimea de la 600 la 700
 
 
     // Setează dimensiunile canvas-ului
@@ -900,6 +903,7 @@ export default function PracticePage() {
                       style={{
                         maxWidth: "100%",
                         height: "auto",
+                        minHeight: "500px", // Crescut de la implicit la 500px minim
                       }}
                       // Pointer events (suportă stylus, touch, mouse)
                       onPointerDown={startDrawing}

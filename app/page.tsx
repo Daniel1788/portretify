@@ -36,7 +36,7 @@ export default function HomePage() {
 
           <h2 className="text-5xl font-bold bauhaus-heading mb-6">
             Învață să desenezi portrete
-            <span className="text-accent"> pas cu pas</span>
+            <span className="text-accent"> pas cu pas</span> cu Portretify
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Descoperă arta desenului de portrete prin lecții interactive, ghiduri vizuale și practică în timp real cu

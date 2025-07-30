@@ -208,7 +208,7 @@ export default function LessonDetailPage({ params }: { params: { id: string } })
                     />
                   </div>
                   <div className="prose max-w-none">
-                    <p className="text-gray-700 leading-relaxed text-lg">{currentStepData.content}</p>
+                    <p className="text-foreground leading-relaxed text-lg">{currentStepData.content}</p>
                   </div>
                   <div className="mt-6 flex items-center justify-between">
                     <Button
