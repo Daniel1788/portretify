@@ -125,40 +125,13 @@ export default function HomePage() {
                   <Circle className="h-6 w-6 text-accent" />
                   <Square className="h-6 w-6 text-foreground absolute ml-3" />
                 </div>
-                <span className="text-xl font-bold bauhaus-heading">PortraitMaster</span>
+                <span className="text-xl font-bold bauhaus-heading">Portretify</span>
               </div>
               <p className="text-muted-foreground">Platforma educațională pentru învățarea desenului de portrete.</p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 bauhaus-heading">Lecții</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>Bazele anatomiei</li>
-                <li>Proporții faciale</li>
-                <li>Tehnici de umbrire</li>
-                <li>Detalii și finisare</li>
-              </ul>
+              { /* */}
             </div>
-            <div>
-              <h4 className="font-semibold mb-4 bauhaus-heading">Resurse</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>Ghid pentru începători</li>
-                <li>Referințe anatomice</li>
-                <li>Galeria comunității</li>
-                <li>FAQ</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 bauhaus-heading">Contact</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>Suport tehnic</li>
-                <li>Feedback</li>
-                <li>Parteneri</li>
-                <li>Despre noi</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 PortraitMaster. Toate drepturile rezervate.</p>
           </div>
         </div>
       </footer>
