@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Bauhaus theme with #8B2635 as accent */
+    --background: 60 10% 96%;
+    --foreground: 20 10% 10%;
+
+    --card: 60 10% 98%;
+    --card-foreground: 20 10% 10%;
+
+    --popover: 60 10% 98%;
+    --popover-foreground: 20 10% 10%;
+
+    --primary: 353 58% 35%;
+    --primary-foreground: 60 10% 98%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 60 10% 98%;
+
+    --muted: 60 5% 90%;
+    --muted-foreground: 20 5% 40%;
+
+    --accent: 353 58% 35%;
+    --accent-foreground: 60 10% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 10% 98%;
+
+    --border: 20 10% 85%;
+    --input: 20 10% 85%;
+    --ring: 353 58% 35%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 10% 10%;
+    --foreground: 60 10% 96%;
+
+    --card: 20 10% 8%;
+    --card-foreground: 60 10% 96%;
+
+    --popover: 20 10% 8%;
+    --popover-foreground: 60 10% 96%;
+
+    --primary: 353 58% 45%;
+    --primary-foreground: 60 10% 98%;
+
+    --secondary: 60 5% 90%;
+    --secondary-foreground: 20 10% 10%;
+
+    --muted: 20 10% 20%;
+    --muted-foreground: 60 5% 65%;
+
+    --accent: 353 58% 45%;
+    --accent-foreground: 60 10% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 10% 98%;
+
+    --border: 20 10% 25%;
+    --input: 20 10% 25%;
+    --ring: 353 58% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Bauhaus-inspired styles with rounded corners */
+.bauhaus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.bauhaus-circle {
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.bauhaus-semicircle {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.bauhaus-semicircle::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: currentColor;
+  top: 0;
+  left: -50%;
+}
+
+.bauhaus-pattern {
+  background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+  background-size: 10px 10px;
+  border-radius: 0.5rem;
+}
+
+.bauhaus-stripes {
+  background-image: repeating-linear-gradient(45deg, currentColor, currentColor 2px, transparent 2px, transparent 10px);
+  border-radius: 0.5rem;
+}
+
+.bauhaus-heading {
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+.bauhaus-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.bauhaus-card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.bauhaus-card:hover {
+  transform: translateY(-4px);
+}
+
+.bauhaus-button {
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease-in-out;
+}
+
+.bauhaus-nav {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bauhaus-decoration {
+  position: absolute;
+  z-index: -1;
+}
+
+.bauhaus-decoration::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: theme("colors.accent.DEFAULT");
+  border-radius: 0.5rem;
+  z-index: -1;
+}
+
+/* Canvas styles */
+canvas {
+  touch-action: none;
+  border-radius: 0.5rem;
+}
+
+/* Background decorative elements */
+.bg-decoration {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.content-layer {
+  position: relative;
+  z-index: 10;
+}
