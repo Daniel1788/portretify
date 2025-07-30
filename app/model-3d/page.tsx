@@ -305,15 +305,13 @@ export default function Model3DPage() {
     const canvas = drawingCanvasRef.current
     if (!canvas) return
 
+    // Get actual rendered dimensions from the canvas element
     const container = canvas.parentElement
-    const containerWidth = container?.clientWidth || 400
-    const canvasWidth = containerWidth - 32
-    const canvasHeight = (canvasWidth * 600) / 800
+    if (!container) return
 
-    canvas.width = canvasWidth
-    canvas.height = canvasHeight
-    canvas.style.width = canvasWidth + "px"
-    canvas.style.height = canvasHeight + "px"
+    // Set canvas internal resolution to match its display size
+    canvas.width = container.clientWidth
+    canvas.height = container.clientHeight
 
     const context = canvas.getContext("2d")
     if (!context) return
@@ -470,11 +468,8 @@ export default function Model3DPage() {
     const reinitializeThreeJSForSplitView = async () => {
       if (!splitViewMode) return
 
-      console.log("🚀 Reinitializing Three.js for split view...")
-
       const canvas = canvasRef.current
       if (!canvas) {
-        console.log("❌ No canvas found for reinitialization")
         return
       }
 
@@ -484,23 +479,13 @@ export default function Model3DPage() {
         const { OrbitControls } = await import("three/addons/controls/OrbitControls.js")
         const { GLTFLoader } = await import("three/addons/loaders/GLTFLoader.js")
 
-        // Get container dimensions
-        const container = canvas.parentElement
-        if (!container) return
-
-        const containerRect = container.getBoundingClientRect()
-        let width = containerRect.width - 32
-        let height = containerRect.height - 100
-
-        width = Math.max(width, 300)
-        height = Math.max(height, 300)
-
-        console.log("📐 Reinitializing with dimensions:", width, "x", height)
+        // Get actual rendered dimensions of the canvas element
+        const width = canvas.clientWidth
+        const height = canvas.clientHeight
 
         // Clear the old renderer
         if (sceneRef.current?.renderer) {
           sceneRef.current.renderer.dispose()
-          console.log("🗑️ Old renderer disposed")
         }
 
         // Create new scene
@@ -514,8 +499,8 @@ export default function Model3DPage() {
         // Set canvas size first
         canvas.width = width
         canvas.height = height
-        canvas.style.width = width + "px"
-        canvas.style.height = height + "px"
+        canvas.style.width = width + "px" // Ensure CSS respects these
+        canvas.style.height = height + "px" // Ensure CSS respects these
 
         // Create new renderer
         const renderer = new THREE.WebGLRenderer({
@@ -529,8 +514,6 @@ export default function Model3DPage() {
         renderer.shadowMap.type = THREE.PCFSoftShadowMap
         renderer.outputColorSpace = THREE.SRGBColorSpace
         renderer.setClearColor(0xf5f5f5, 1)
-
-        console.log("✅ New renderer created")
 
         // Create new controls
         const controls = new OrbitControls(camera, renderer.domElement)
@@ -569,11 +552,9 @@ export default function Model3DPage() {
         if (sceneRef.current?.headModel) {
           // Clone the existing model
           headModel = sceneRef.current.headModel.clone()
-          console.log("♻️ Reusing existing head model")
         } else {
           // Create fallback model
           headModel = createFallbackHeadInline(THREE)
-          console.log("🔄 Created fallback head model")
         }
 
         scene.add(headModel)
@@ -593,7 +574,6 @@ export default function Model3DPage() {
           THREE,
         }
 
-        console.log("✅ Scene reinitialized for split view")
 
         // Start new animation loop
         let animationId: number
@@ -608,24 +588,19 @@ export default function Model3DPage() {
         for (let i = 0; i < 5; i++) {
           setTimeout(() => {
             renderer.render(scene, camera)
-            if (i === 0) console.log("✅ First immediate render completed")
           }, i * 100)
         }
 
-        console.log("🎬 Animation loop restarted")
       } catch (error) {
-        console.error("❌ Error reinitializing Three.js:", error)
       }
     }
 
     const reinitializeThreeJSForNormalView = async () => {
       if (splitViewMode) return
 
-      console.log("🚀 Reinitializing Three.js for normal view...")
 
       const canvas = canvasRef.current
       if (!canvas) {
-        console.log("❌ No canvas found for reinitialization")
         return
       }
 
@@ -635,22 +610,14 @@ export default function Model3DPage() {
         const { OrbitControls } = await import("three/addons/controls/OrbitControls.js")
         const { GLTFLoader } = await import("three/addons/loaders/GLTFLoader.js")
 
-        // Get container dimensions for normal view
-        const container = canvas.parentElement
-        if (!container) return
+        // Get actual rendered dimensions of the canvas element
+        const width = canvas.clientWidth
+        const height = canvas.clientHeight // This will be 600px due to CSS
 
-        const containerRect = container.getBoundingClientRect()
-        let width = containerRect.width - 32
-        const height = 600 // Fixed height for normal view
-
-        width = Math.max(width, 400)
-
-        console.log("📐 Reinitializing normal view with dimensions:", width, "x", height)
 
         // Clear the old renderer
         if (sceneRef.current?.renderer) {
           sceneRef.current.renderer.dispose()
-          console.log("🗑️ Old renderer disposed")
         }
 
         // Create new scene
@@ -680,7 +647,6 @@ export default function Model3DPage() {
         renderer.outputColorSpace = THREE.SRGBColorSpace
         renderer.setClearColor(0xf5f5f5, 1)
 
-        console.log("✅ New renderer created for normal view")
 
         // Create new controls
         const controls = new OrbitControls(camera, renderer.domElement)
@@ -719,11 +685,9 @@ export default function Model3DPage() {
         if (sceneRef.current?.headModel) {
           // Clone the existing model
           headModel = sceneRef.current.headModel.clone()
-          console.log("♻️ Reusing existing head model for normal view")
         } else {
           // Create fallback model
           headModel = createFallbackHeadInline(THREE)
-          console.log("🔄 Created fallback head model for normal view")
         }
 
         scene.add(headModel)
@@ -743,8 +707,6 @@ export default function Model3DPage() {
           THREE,
         }
 
-        console.log("✅ Scene reinitialized for normal view")
-
         // Start new animation loop
         let animationId: number
         const animate = () => {
@@ -758,13 +720,12 @@ export default function Model3DPage() {
         for (let i = 0; i < 5; i++) {
           setTimeout(() => {
             renderer.render(scene, camera)
-            if (i === 0) console.log("✅ First immediate render completed for normal view")
+            if (i === 0) console.log("First immediate render completed for normal view")
           }, i * 100)
         }
 
-        console.log("🎬 Animation loop restarted for normal view")
       } catch (error) {
-        console.error("❌ Error reinitializing Three.js for normal view:", error)
+        console.error("Error reinitializing Three.js for normal view:", error)
       }
     }
 
@@ -805,18 +766,16 @@ export default function Model3DPage() {
   useEffect(() => {
     if (!sceneRef.current) return
 
-    console.log("🎯 Split view mode changed to:", splitViewMode)
 
     // Force continuous rendering for a few seconds when entering split view
     if (splitViewMode) {
-      console.log("🚀 Starting forced rendering for split view")
 
       const forceRenderInterval = setInterval(() => {
         if (sceneRef.current?.renderer && sceneRef.current?.scene && sceneRef.current?.camera) {
           try {
             sceneRef.current.renderer.render(sceneRef.current.scene, sceneRef.current.camera)
           } catch (error) {
-            console.error("❌ Forced render error:", error)
+            console.error("Forced render error:", error)
           }
         }
       }, 100)
@@ -825,18 +784,18 @@ export default function Model3DPage() {
       setTimeout(() => {
         const canvas = canvasRef.current
         if (canvas && sceneRef.current?.renderer) {
-          console.log("🔄 Attempting canvas context reset")
+          console.log("Attempting canvas context reset")
           const { renderer, scene, camera } = sceneRef.current
 
           // Get current canvas dimensions
           const rect = canvas.getBoundingClientRect()
-          console.log("📐 Canvas rect:", rect.width, "x", rect.height)
+          console.log("Canvas rect:", rect.width, "x", rect.height)
 
           // Force renderer to use the canvas again
           renderer.setSize(rect.width, rect.height, true)
           renderer.render(scene, camera)
 
-          console.log("✅ Canvas context reset attempted")
+          console.log("Canvas context reset attempted")
         }
       }, 500)
 
@@ -973,7 +932,9 @@ export default function Model3DPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="p-4 h-full">
-                    <div className="relative h-full">
+                    <div className="relative h-[calc(100vh-304px)]">
+                      {" "}
+                      {/* Adjusted height */}
                       {isLoading && (
                         <div className="absolute inset-0 bg-gray-100 rounded-lg flex items-center justify-center z-10">
                           <div className="text-center">
@@ -984,8 +945,8 @@ export default function Model3DPage() {
                       )}
                       <canvas
                         ref={canvasRef}
-                        className="w-full h-full rounded-lg border-2 border-border bg-gray-50"
-                        style={{ display: "block", minHeight: "400px", maxHeight: "calc(100vh - 300px)" }}
+                        className="w-full h-full rounded-lg border-2 border-border bg-gray-50" // Removed inline style
+                        style={{ display: "block" }}
                       />
                     </div>
                   </CardContent>
@@ -1037,7 +998,9 @@ export default function Model3DPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="p-4 h-full">
-                    <div className="relative h-full">
+                    <div className="relative h-[calc(100vh-304px)]">
+                      {" "}
+                      {/* Adjusted height */}
                       <canvas
                         ref={drawingCanvasRef}
                         className="border-2 border-gray-300 rounded-lg bg-white cursor-crosshair touch-none w-full h-full"
