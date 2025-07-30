@@ -18,6 +18,23 @@ import Link from "next/link"
 export function Navigation() {
   const { user, profile, signOut, isAdmin } = useAuth()
   const [showAuthModal, setShowAuthModal] = useState(false)
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+
+  const handleLogout = async () => {
+    if (isLoggingOut) return
+
+    setIsLoggingOut(true)
+    try {
+      await signOut()
+    } catch (error) {
+      console.error("Logout error:", error)
+    } finally {
+      // Add a small delay to ensure the logout completes
+      setTimeout(() => {
+        setIsLoggingOut(false)
+      }, 1000)
+    }
+  }
 
   return (
     <>
@@ -29,7 +46,7 @@ export function Navigation() {
                 <Circle className="h-6 w-6 text-accent" />
                 <Square className="h-6 w-6 text-secondary absolute ml-3" />
               </div>
-              <h1 className="text-xl font-bold bauhaus-heading">PortraitMaster</h1>
+              <h1 className="text-xl font-bold bauhaus-heading">Portretify</h1>
             </Link>
 
             <nav className="hidden md:flex items-center space-x-8 bauhaus-nav">
@@ -94,9 +111,9 @@ export function Navigation() {
                           </>
                         )}
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={signOut} className="cursor-pointer">
+                        <DropdownMenuItem onClick={handleLogout} disabled={isLoggingOut} className="cursor-pointer">
                           <LogOut className="mr-2 h-4 w-4" />
-                          Deconectare
+                          {isLoggingOut ? "Se deconectează..." : "Deconectare"}
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
